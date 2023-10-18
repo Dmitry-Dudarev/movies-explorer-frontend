@@ -1,0 +1,118 @@
+.header {
+  margin: 0;
+  padding: 18px 70px;
+  background-color: #202020;
+  display: flex;
+  flex-direction: row;
+  gap: 45px;
+}
+
+.header_main-page {
+  background-color: #073042;
+}
+
+.header__logo {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+}
+
+.header__bar {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__movies-bar {
+  justify-content: flex-start;
+  gap: 17px;
+}
+
+.header__user-bar {
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+.header__movies-link {
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.385;
+  font-weight: 400;
+}
+
+.header__register-link,
+.header__login-link {
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 1.333;
+  font-weight: 500;
+}
+
+.header__login-link {
+  color: #000;
+  padding: 8px 20px;
+  border-radius: 3px;
+  background-color: #3DDC84;
+}
+
+.header__menu {
+  background: none;
+  border: none;
+  padding: 0 6px 0 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+@media (min-width: 1281px) {
+  .header {
+    padding-left: calc((100% - 1140px) / 2);
+    padding-right: calc((100% - 1140px) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (max-width: 320px) {
+  .header {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .header__user-bar {
+    gap: 15px;
+  }
+
+  .header__register-link {
+    font-size: 10px;
+  }
+
+  .header__login-link {
+    font-size: 10px;
+    padding: 6px 12px;
+  }
+
+  .header__menu-icon {
+    width: 27px;
+  }
+}
+
+@media (max-width: 270px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+}
