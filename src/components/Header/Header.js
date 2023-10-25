@@ -6,7 +6,7 @@ import menuIcon from '../../images/header__menu-icon.svg';
 import './Header.css'
 import { Link, useLocation } from 'react-router-dom';
 
-function Header({ changeNavigationVisibility, ...props}) {
+function Header({ changeNavigationVisibility, ...props }) {
   const loggedIn = props.loggedIn;
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
@@ -35,8 +35,26 @@ function Header({ changeNavigationVisibility, ...props}) {
 
       {loggedIn && windowWidth > 768 && (
         <div className='header__movies-bar header__bar'>
-          <Link className='app-link header__movies-link app-text' to='/movies'>Фильмы</Link>
-          <Link className='app-link header__movies-link app-text' to='/saved-movies'>Сохранённые фильмы</Link>
+          <Link
+            className={
+              `app-link 
+              header__movies-link 
+              app-text 
+              ${location.pathname === '/movies' ? 'header__movies-link_current' : ''}`
+            }
+            to='/movies'>
+            Фильмы
+          </Link>
+          <Link
+            className={
+              `app-link 
+              header__movies-link 
+              app-text 
+              ${location.pathname === '/saved-movies' ? 'header__movies-link_current' : ''}`
+            }
+            to='/saved-movies'>
+            Сохранённые фильмы
+          </Link>
         </div>
       )}
 
@@ -53,14 +71,13 @@ function Header({ changeNavigationVisibility, ...props}) {
           )
         ) : (
           <>
-            <Link className='app-link header__register-link app-text' to='/sign-up'>Регистрация</Link>
-            <Link className='app-link header__login-link app-text' to='/sign-in'>Войти</Link>
+            <Link className='app-link header__register-link app-text' to='/signup'>Регистрация</Link>
+            <Link className='app-link header__login-link app-text' to='/signin'>Войти</Link>
           </>
         )}
       </div>
     </header>
   );
 }
-
 
 export default Header;

@@ -40,10 +40,6 @@ function MoviesCard(props) {
             :
             <LikeIcon style={likeStyles} className='movie-card__like-icon app-link' onClick={toggleCardLike} />
           }
-
-          {/* <LikeIcon style={likeStyles} className='movie-card__like-icon' onClick={toggleCardLike} /> */}
-
-          {/* <img src={likeIcon} alt='Лайк' className='movie-card__like-icon' /> */}
         </div>
         <p className='movie-card__duration app-text'>{formatDuration(duration)}</p>
       </div>

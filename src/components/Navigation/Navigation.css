@@ -83,3 +83,27 @@
 .navigation__profile-link {
   padding: 5px;
 }
+
+@media (max-width: 430px) {
+  .navigation__content {
+    width: 100%;
+  }
+
+  .navigation {
+    background-color: transparent;
+    transform: none;
+  }
+
+  .navigation__content {
+    padding: 13px 0 41px;
+    gap: 100px;
+  }
+
+  .navigation__text-links {
+    gap: 19px;
+  }
+
+  .navigation__link {
+    padding-bottom: 3.5px;
+  }
+}

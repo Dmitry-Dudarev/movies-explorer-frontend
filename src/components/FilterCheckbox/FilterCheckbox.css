@@ -18,10 +18,16 @@
   cursor: pointer;
 }
 
-.filter-checkbox__checkbox:not(:checked) ~ .filter-checkbox__switch-off {
+.filter-checkbox__checkbox:not(:checked)~.filter-checkbox__switch-off {
   display: inline-block;
 }
 
-.filter-checkbox__checkbox:checked ~ .filter-checkbox__switch-on {
+.filter-checkbox__checkbox:checked~.filter-checkbox__switch-on {
   display: inline-block;
+}
+
+@media (max-width: 320px) {
+  .filter-checkbox {
+    font-size: 11px;
+  }
 }
