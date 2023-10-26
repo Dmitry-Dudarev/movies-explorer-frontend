@@ -37,16 +37,18 @@ function App() {
     <div className='app'>
       <div className="app-content">
         {showHeader && <Header loggedIn={loggedIn} changeNavigationVisibility={changeNavigationVisibility} />}
-        <Navigation isNavigationVisible={isNavigationVisible} changeNavigationVisibility={changeNavigationVisibility} />
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/movies' element={<Movies />} />
-          <Route path='/saved-movies' element={<SavedMovies />} />
-          <Route path='/profile' element={<Profile onSignOut={signOut} />} />
-          <Route path='/signup' element={<Register />} />
-          <Route path='/signin' element={<Login />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <main>
+          <Navigation isNavigationVisible={isNavigationVisible} changeNavigationVisibility={changeNavigationVisibility} />
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route path='/movies' element={<Movies />} />
+            <Route path='/saved-movies' element={<SavedMovies />} />
+            <Route path='/profile' element={<Profile onSignOut={signOut} />} />
+            <Route path='/signup' element={<Register />} />
+            <Route path='/signin' element={<Login />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </main>
         {showFooter && <Footer />}
       </div>
     </div>

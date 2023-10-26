@@ -36,9 +36,9 @@ function MoviesCard(props) {
           <p className='movie-card__title app-text'>{nameRU}</p>
 
           {isSavedPage ?
-            <DeleteIcon className='movie-card__delete-icon app-link' onClick={deleteCardLike} />
+            <DeleteIcon className='app-link movie-card__delete-icon' onClick={deleteCardLike} />
             :
-            <LikeIcon style={likeStyles} className='movie-card__like-icon app-link' onClick={toggleCardLike} />
+            <LikeIcon style={likeStyles} className='app-link movie-card__like-icon' onClick={toggleCardLike} />
           }
         </div>
         <p className='movie-card__duration app-text'>{formatDuration(duration)}</p>

@@ -40,13 +40,14 @@
 
 .movie-card__delete-icon {
   visibility: hidden;
-  opacity: 0;
-  cursor: pointer;
 }
 
 .movie-card:hover .movie-card__delete-icon {
   visibility: visible;
-  opacity: 1;
+}
+
+ .movie-card__delete-icon:hover {
+  cursor: pointer;
 }
 
 .movie-card__duration {

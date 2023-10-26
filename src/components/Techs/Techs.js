@@ -4,7 +4,7 @@ import './Techs.css';
 function Techs(props) {
   return (
     <section id='techs' className='techs'>
-      <h2 className='main__section-title app-text techs__title'>Технологии</h2>
+      <h2 className='app-section-title app-text techs__title'>Технологии</h2>
       <p className='techs__technologies app-text'>7 технологий</p>
       <p className='techs__description app-text'>
         На курсе веб-разработки мы освоили технологии,

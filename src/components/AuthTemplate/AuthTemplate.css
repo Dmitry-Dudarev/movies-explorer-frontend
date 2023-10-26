@@ -59,7 +59,8 @@
 }
 
 .auth-template__form-input:focus {
-  background-color: #3d3b3b;
+  background-color: #FFF;
+  color: #000;
 }
 
 .auth-template__form-error-message {
@@ -78,6 +79,13 @@
   color: #FF004C;
   height: 14px;
   padding: 0 0 20px;
+}
+
+.auth-template__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .auth-template__submit-button {

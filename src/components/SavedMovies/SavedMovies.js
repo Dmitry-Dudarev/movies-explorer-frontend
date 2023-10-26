@@ -6,10 +6,10 @@ import { movies } from '../../movies-dev';
 
 function SavedMovies(props) {
   return (
-    <main className='saved-movies'>
+    <section className='saved-movies'>
       <SearchForm />
       <MoviesCardList movies={movies} />
-    </main>
+    </section>
   );
 }
 

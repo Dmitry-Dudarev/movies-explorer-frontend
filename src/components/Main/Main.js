@@ -9,14 +9,14 @@ import './Main.css';
 
 function Main(props) {
   return (
-    <main className='main'>
+    <section className='main'>
       <Promo />
       <NavTab />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
-    </main>
+    </section>
 
   );
 }

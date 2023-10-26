@@ -1,21 +1,12 @@
 @import url(./vendor/normalize.css);
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./fonts/Inter-Regular.woff2') format('woff2'),
-       url('./fonts/Inter-Regular.woff') format('woff');
-  font-weight: 400; /* Regular */
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('./fonts/Inter-Medium.woff2') format('woff2'),
-       url('./fonts/Inter-Medium.woff') format('woff');
-  font-weight: 500; /* Medium */
-  font-style: normal;
-}
+@import url(./fonts/fonts.css);
 
 html {
   scroll-behavior: smooth;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

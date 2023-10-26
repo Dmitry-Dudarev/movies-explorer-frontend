@@ -6,10 +6,10 @@ import { movies } from '../../movies-dev';
 
 function Movies(props) {
   return (
-    <main className='movies'>
+    <section className='movies'>
       <SearchForm />
       <MoviesCardList movies={movies} />
-    </main>
+    </section>
   );
 }
 

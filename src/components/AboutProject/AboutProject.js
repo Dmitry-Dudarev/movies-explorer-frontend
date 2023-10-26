@@ -4,7 +4,7 @@ import './AboutProject.css';
 function AboutProject(props) {
   return (
     <section id='about-project' className='about-project'>
-      <h2 className='main__section-title app-text'>О проекте</h2>
+      <h2 className='app-section-title app-text about-project__section-title'>О проекте</h2>
       <div className='about-project__info'>
         <p className='about-project__info-title app-text'>
           Дипломный проект включал 5 этапов</p>

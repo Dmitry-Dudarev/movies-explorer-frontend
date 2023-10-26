@@ -65,7 +65,7 @@ function Header({ changeNavigationVisibility, ...props }) {
               <img className='header__profile-logo' src={location.pathname === '/' ? profileLogoMainPage : profileLogo} alt='Профиль' />
             </Link>
           ) : (
-            <button className='header__menu' onClick={changeNavigationVisibility}>
+            <button className='app-link header__menu' onClick={changeNavigationVisibility}>
               <img className='header__menu-icon' src={menuIcon} alt='Меню' />
             </button>
           )

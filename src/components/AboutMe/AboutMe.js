@@ -5,7 +5,7 @@ import MyPhoto from '../../images/MyPhoto.jpg';
 function AboutMe(props) {
   return (
     <section id='about-me' className='about-me'>
-      <h2 className='main__section-title app-text'>Студент</h2>
+      <h2 className='app-section-title app-text about-me__section-title'>Студент</h2>
       <div className='about-me__container'>
         <div className='about-me__info'>
           <p className='about-me__name app-text'>Дмитрий</p>

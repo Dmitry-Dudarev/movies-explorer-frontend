@@ -35,7 +35,7 @@ function AuthTemplate(props) {
           }
         </div>
 
-        <div className='profile__buttons'>
+        <div className='auth-template__buttons'>
           <span className='app-text auth-template__server-error-message'>{props.serverErrorMessage}</span>
           <button
             type='submit'

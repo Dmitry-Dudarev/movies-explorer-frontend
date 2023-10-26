@@ -47,7 +47,10 @@
 }
 
 .profile-form__input:focus {
-  color: #94b9f3;
+  background-color: #fff;
+  color: #000;
+  line-height: 1.8;
+  border-radius: 3px;
 }
 
 .profile__divider {
@@ -148,7 +151,7 @@
 
 @media (max-width: 900px) {
   .profile {
-    padding: 0 0 31px;
+    padding: 237px 0 31px;
     justify-content: center;
     gap: 30px;
   }
@@ -170,7 +173,7 @@
   .profile-form {
     flex-grow: 1;
     width: 81%;
-    gap: 10px;
+    gap: 294px;
   }
 
   .profile-form__edit-button {

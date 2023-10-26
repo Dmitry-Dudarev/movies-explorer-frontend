@@ -1,6 +1,6 @@
 .about-project {
   padding: 110px 70px;
-  background-color: #000;
+  background-color: #202020;
 }
 
 .about-project__info {
@@ -157,6 +157,5 @@
     padding-bottom: 70px;
     padding-left: 18px;
     padding-right: 18px;
-    background-color: #202020;
   }
 }
