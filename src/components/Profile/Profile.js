@@ -2,7 +2,7 @@ import React from 'react';
 import './Profile.css';
 import { setValidationMessage } from '../../utils/Validation';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { usernamePattern } from '../../utils/regexPatterns';
+import { usernamePattern, emailPattern } from '../../utils/regexPatterns';
 import { handleEditProfileErrors } from '../../utils/serverErrorHandlers';
 
 function Profile(props) {
@@ -93,6 +93,7 @@ function Profile(props) {
             onInput={handleEmailValidation}
             placeholder='E-mail'
             type='email'
+            pattern={emailPattern}
             required
             disabled={!isEditing}
           />

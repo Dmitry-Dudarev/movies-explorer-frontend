@@ -25,6 +25,8 @@ export function setValidationMessage(inputElement) {
     inputElement.setCustomValidity(`Максимальная длина - ${inputElement.maxLength} символов`);
   } else if (inputElement.validity.patternMismatch && inputElement.name === 'name') {
     inputElement.setCustomValidity('Имя может содержать только слова, разделенные пробелом или дефисом');
+  } else if (inputElement.validity.patternMismatch && inputElement.name === 'email') {
+    inputElement.setCustomValidity('Проверьте адрес электронной почты');
   } else {
     inputElement.setCustomValidity('');
   }
