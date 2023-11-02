@@ -173,39 +173,37 @@ function App() {
             <Navigation isNavigationVisible={isNavigationVisible} changeNavigationVisibility={changeNavigationVisibility} />
             <Routes>
               <Route path='/' element={<Main />} />
+              
               <Route path='/movies' element={
                 <ProtectedRouteElement
                   loggedIn={loggedIn}
-                  element={
-                    <Movies
-                      movies={movies}
-                      getMovies={getMovies}
-                      addMovie={addMovie}
-                      getAllLikedMovies={getAllLikedMovies}
-                      deleteMovie={deleteMovie}
-                      savedMovies={savedMovies}
-                    />
-                  }
+                  element={Movies}
+                  movies={movies}
+                  getMovies={getMovies}
+                  addMovie={addMovie}
+                  getAllLikedMovies={getAllLikedMovies}
+                  deleteMovie={deleteMovie}
+                  savedMovies={savedMovies}
                 />
               } />
               <Route path='/saved-movies' element={
                 <ProtectedRouteElement
                   loggedIn={loggedIn}
-                  element={
-                    <SavedMovies
-                      deleteMovie={deleteMovie}
-                      savedMovies={savedMovies}
-                      getAllLikedMovies={getAllLikedMovies}
-                    />
-                  }
+                  element={SavedMovies}
+                  deleteMovie={deleteMovie}
+                  savedMovies={savedMovies}
+                  getAllLikedMovies={getAllLikedMovies}
                 />
               } />
               <Route path='/profile' element={
                 <ProtectedRouteElement
                   loggedIn={loggedIn}
-                  element={<Profile logoutUser={logoutUser} editProfile={editProfile} />}
+                  element={Profile}
+                  logoutUser={logoutUser}
+                  editProfile={editProfile}
                 />
               } />
+
               <Route path='/signup' element={<Register registerUser={registerUser} />} />
               <Route path='/signin' element={<Login loginUser={loginUser} />} />
               <Route path='*' element={<NotFound />} />
