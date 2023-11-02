@@ -1,7 +1,7 @@
 import React from 'react';
 import AuthTemplate from '../AuthTemplate/AuthTemplate';
 import { handleValidation } from '../../utils/Validation';
-import { usernamePattern, emailPattern } from '../../utils/regexPatterns';
+import { usernamePattern } from '../../utils/regexPatterns';
 import { handleRegistrationErrors } from '../../utils/serverErrorHandlers';
 
 function Register(props) {
@@ -67,7 +67,6 @@ function Register(props) {
       type: 'email',
       name: 'email',
       label: 'E-mail',
-      pattern: emailPattern,
       placeholder: 'Введите ваш E-mail',
       isRequired: true,
     },

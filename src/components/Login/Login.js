@@ -2,7 +2,6 @@ import React from 'react';
 import AuthTemplate from '../AuthTemplate/AuthTemplate';
 import { handleValidation } from '../../utils/Validation';
 import { handleLoginErrors } from '../../utils/serverErrorHandlers'
-import { emailPattern } from '../../utils/regexPatterns';
 
 function Login(props) {
   const [isEmailValid, setIsEmailValid] = React.useState(false);
@@ -54,7 +53,6 @@ async function submitForm(e) {
       type: 'email',
       name: 'email',
       label: 'E-mail',
-      pattern: emailPattern,
       placeholder: 'Введите ваш E-mail',
       isRequired: true,
     },

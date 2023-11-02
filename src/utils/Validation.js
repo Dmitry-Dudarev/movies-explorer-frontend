@@ -1,3 +1,5 @@
+import validator from 'validator';
+
 export function handleValidation(e, setStateFunctions, setErrorMessages) {
   setValidationMessage(e.target);
   const { name, validity, validationMessage } = e.target;
@@ -17,6 +19,8 @@ export function handleValidation(e, setStateFunctions, setErrorMessages) {
 export function setValidationMessage(inputElement) {
   if (inputElement.validity.valueMissing) {
     inputElement.setCustomValidity('Это поле обязательно для заполнения');
+  } else if (inputElement.name === 'email' && !validator.isEmail(inputElement.value)) {
+    inputElement.setCustomValidity('Введите корректный email');
   } else if (inputElement.validity.typeMismatch && inputElement.type === 'email') {
     inputElement.setCustomValidity('Введите корректный email');
   } else if (inputElement.validity.tooShort) {
@@ -25,8 +29,6 @@ export function setValidationMessage(inputElement) {
     inputElement.setCustomValidity(`Максимальная длина - ${inputElement.maxLength} символов`);
   } else if (inputElement.validity.patternMismatch && inputElement.name === 'name') {
     inputElement.setCustomValidity('Имя может содержать только слова, разделенные пробелом или дефисом');
-  } else if (inputElement.validity.patternMismatch && inputElement.name === 'email') {
-    inputElement.setCustomValidity('Проверьте адрес электронной почты');
   } else {
     inputElement.setCustomValidity('');
   }
