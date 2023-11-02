@@ -72,10 +72,10 @@ function App() {
   async function loginUser(loginUserData) {
     try {
       await mainApi.loginUser(loginUserData);
-      setLoggedIn(true);
       const currentUserData = await mainApi.getCurrentUserData();
       setCurrentUser(currentUserData);
       checkUserAuthAndGetLikedMovies();
+      setLoggedIn(true);
       navigate('/movies', { replace: true });
     } catch (err) {
       console.error(`Ошибка при авторизации пользователя: ${err.errorData.message}`);
