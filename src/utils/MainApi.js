@@ -1,4 +1,4 @@
- export const baseMainURL = 'https://api.Brunneng.nomoredomainsicu.ru';
+export const baseMainURL = 'https://api.Brunneng.nomoredomainsicu.ru';
 
 export const registerNewUser = async (userData) => {
   try {

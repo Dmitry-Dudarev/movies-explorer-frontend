@@ -3,7 +3,9 @@ https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/%D0%94%D0%B8%D0%BF%D0%BB%D0%BE
 
 
 ссылка на Pull request:
-
+https://github.com/Dmitry-Dudarev/movies-explorer-frontend/pull/2
+ссылка на проект:
+https://brunneng.nomoredomainsrocks.ru/
 
 # movies-explorer-frontend
 
