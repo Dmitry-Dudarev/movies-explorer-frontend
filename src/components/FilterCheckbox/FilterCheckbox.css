@@ -1,0 +1,33 @@
+.filter-checkbox {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.filter-checkbox__checkbox {
+  visibility: hidden;
+  position: absolute;
+}
+
+.filter-checkbox__switch {
+  display: none;
+  cursor: pointer;
+}
+
+.filter-checkbox__checkbox:not(:checked)~.filter-checkbox__switch-off {
+  display: inline-block;
+}
+
+.filter-checkbox__checkbox:checked~.filter-checkbox__switch-on {
+  display: inline-block;
+}
+
+@media (max-width: 320px) {
+  .filter-checkbox {
+    font-size: 11px;
+  }
+}

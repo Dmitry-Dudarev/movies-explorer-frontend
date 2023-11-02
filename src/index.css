@@ -1,0 +1,12 @@
+@import url(./vendor/normalize.css);
+@import url(./fonts/fonts.css);
+
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

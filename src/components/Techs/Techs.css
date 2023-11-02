@@ -1,0 +1,142 @@
+.techs {
+  padding: 100px 70px;
+  background-color: #272727;
+  display: flex;
+  flex-direction: column;
+}
+
+.techs__technologies {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -2px;
+  text-align: center;
+  padding: 91px 0 26px 0;
+}
+
+.techs__description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4286;
+  letter-spacing: -0.6px;
+  text-align: center;
+  padding: 0 342px 100px;
+}
+
+.techs__icons {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.techs__icon {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  width: 90px;
+  height: 60px;
+  background-color: #303030;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1281px) {
+  .techs {
+    padding-left: calc((100% - 1140px) / 2);
+    padding-right: calc((100% - 1140px) / 2);
+  }
+}
+
+@media (max-width: 1150px) {
+  .techs__description {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .techs {
+    padding-top: 89px;
+    padding-bottom: 90px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .techs__technologies {
+    padding: 80px 0 22px 0;
+  }
+
+  .techs__description {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.5px;
+    padding: 0 135px 83px;
+  }
+
+  .techs__icons {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .techs__icon {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.4px;
+    width: 84px;
+    height: 57px;
+  }
+}
+
+@media (max-width: 600px) {
+  .techs__icons {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-column-gap: 10px;
+  }
+
+  .techs__description {
+    font-size: 11px;
+    line-height: 1.4545;
+    padding: 0 0 49px;
+  }
+}
+
+@media (max-width: 420px) {
+  .techs__technologies {
+    font-size: 30px;
+    letter-spacing: -1.2px;
+    padding-top: 60px;
+    padding-bottom: 25px;
+  }
+}
+
+@media (max-width: 320px) {
+  .techs {
+    padding-top: 69px;
+    padding-bottom: 70px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #202020;
+  }
+
+  .techs .techs__title {
+    border-bottom: 1px solid #000000;
+  }
+}
+
+@media (max-width: 270px) {
+  .techs__icons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    justify-items: center;
+  }
+}
