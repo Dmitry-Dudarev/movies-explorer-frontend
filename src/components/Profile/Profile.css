@@ -135,6 +135,15 @@
   margin-bottom: 20px;
 }
 
+.profile__success-message {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #32c459;
+  margin-bottom: 20px;
+}
+
 .profile__logout-button {
   margin: 0;
   padding: 0;

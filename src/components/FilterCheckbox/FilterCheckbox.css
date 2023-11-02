@@ -14,17 +14,18 @@
 }
 
 .filter-checkbox__switch {
-  display: none;
+  /* display: none; */
+  display: inline-block;
   cursor: pointer;
 }
-
+/* 
 .filter-checkbox__checkbox:not(:checked)~.filter-checkbox__switch-off {
   display: inline-block;
 }
 
 .filter-checkbox__checkbox:checked~.filter-checkbox__switch-on {
   display: inline-block;
-}
+} */
 
 @media (max-width: 320px) {
   .filter-checkbox {

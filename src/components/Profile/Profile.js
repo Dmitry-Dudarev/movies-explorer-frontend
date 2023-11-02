@@ -1,18 +1,26 @@
 import React from 'react';
 import './Profile.css';
-import { setValidationMessage } from '../../utils/Validation/Validation';
-import { ErrorMessages } from '../../utils/ErrorMessages/ErrorMessages';
+import { setValidationMessage } from '../../utils/Validation';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { usernamePattern } from '../../utils/regexPatterns';
+import { handleEditProfileErrors } from '../../utils/serverErrorHandlers';
 
 function Profile(props) {
-  const [name, setName] = React.useState('Дмитрий');
-  const [email, setEmail] = React.useState('dmitry@yandex.ru');
+  const currentUser = React.useContext(CurrentUserContext);
+  const [initialName, setInitialName] = React.useState(currentUser.name || '');
+  const [initialEmail, setInitialEmail] = React.useState(currentUser.email || '');
+  const [name, setName] = React.useState(currentUser.name || '');
+  const [email, setEmail] = React.useState(currentUser.email || '');
   const [isEditing, setIsEditing] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState('');
   const [isNameValid, setIsNameValid] = React.useState(true);
   const [isEmailValid, setIsEmailValid] = React.useState(true);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const isSaveButtonDisabled = !isNameValid || !isEmailValid;
+  const [serverErrorMessage, setServerErrorMessage] = React.useState('');
+  const dataHasChanged = name !== initialName || email !== initialEmail;
+  const isSaveButtonDisabled = !isNameValid || !isEmailValid || !dataHasChanged;
+  const isEditButtonDisabled = false; // Эта кнопка всегда активна
+  const [serverSuccessMessage, setServerSuccessMessage] = React.useState('');
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -35,11 +43,22 @@ function Profile(props) {
   };
 
   function toggleEdit() {
+    setInitialName(name);
+    setInitialEmail(email);
     setIsEditing(!isEditing);
   };
 
-  function submitProfileForm(e) {
+  async function submitProfileForm(e) {
     e.preventDefault();
+    try {
+      await props.editProfile({ name, email });
+      setServerErrorMessage('')
+      setServerSuccessMessage('Профиль успешно обновлен!')
+    } catch (err) {
+      // ловим ошибку редактирования из App
+      const errorMessage = handleEditProfileErrors(err);
+      setServerErrorMessage(errorMessage);
+    }
   };
 
   return (
@@ -50,7 +69,7 @@ function Profile(props) {
           <span className='app-text profile-form__error-message profile-form__name-error-message'>{nameErrorMessage}</span>
           <label className='app-text profile-form__label profile-form__name-label'>Имя</label>
           <input
-            name='profileName'
+            name='name'
             className='app-text profile-form__input profile-form__name'
             value={name}
             onChange={handleNameChange}
@@ -60,6 +79,7 @@ function Profile(props) {
             minLength={2}
             maxLength={30}
             required
+            pattern={usernamePattern}
             disabled={!isEditing}
           />
 
@@ -67,7 +87,7 @@ function Profile(props) {
 
           <label className='app-text profile-form__label profile-form__name-label'>E-mail</label>
           <input
-            name='profileEmail'
+            name='email'
             className='app-text profile-form__input profile-form__email'
             value={email} onChange={handleEmailChange}
             onInput={handleEmailValidation}
@@ -80,7 +100,8 @@ function Profile(props) {
         </div>
 
         <div className='profile__buttons'>
-          <span className='app-text profile__error-message'>{errorMessage}</span>
+          <span className='app-text profile__error-message'>{serverErrorMessage}</span>
+          <span className='app-text profile__success-message'>{serverSuccessMessage}</span>
           <button
             type={isEditing ? 'button' : 'submit'}
             className={
@@ -88,15 +109,15 @@ function Profile(props) {
               app-text 
               profile-form__button 
               ${isEditing ? 'profile-form__save-button' : 'profile-form__edit-button'}
-              ${isSaveButtonDisabled && 'profile-form__save-button--disabled'}`
+              ${isEditing && isSaveButtonDisabled ? 'profile-form__save-button--disabled' : ''}`
             }
             onClick={toggleEdit}
-            disabled={isSaveButtonDisabled}
+            disabled={isEditing ? isSaveButtonDisabled : isEditButtonDisabled}
           >
             {isEditing ? 'Сохранить' : 'Редактировать'}
           </button>
           {!isEditing && (
-            <button className='app-link app-text profile__logout-button' onClick={props.onSignOut}>Выйти из аккаунта</button>
+            <button className='app-link app-text profile__logout-button' onClick={props.logoutUser}>Выйти из аккаунта</button>
           )}
         </div>
       </form>

@@ -28,6 +28,7 @@ function AuthTemplate(props) {
                   minLength={field.minLength}
                   maxLength={field.maxLength}
                   required={field.isRequired}
+                  pattern={field.pattern}
                 />
                 <span className='app-text auth-template__form-error-message'>{props.errorMessages[field.name]}</span>
               </div>

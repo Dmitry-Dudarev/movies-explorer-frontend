@@ -1,54 +1,57 @@
 import React from 'react';
 import AuthTemplate from '../AuthTemplate/AuthTemplate';
-import { setValidationMessage } from '../../utils/Validation/Validation';
-import { ErrorMessages } from '../../utils/ErrorMessages/ErrorMessages';
+import { handleValidation } from '../../utils/Validation';
+import { usernamePattern } from '../../utils/regexPatterns';
+import { handleRegistrationErrors } from '../../utils/serverErrorHandlers';
 
 function Register(props) {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
   const [isNameValid, setIsNameValid] = React.useState(false);
   const [isEmailValid, setIsEmailValid] = React.useState(false);
   const [isPasswordValid, setIsPasswordValid] = React.useState(false);
-  const [serverErrorMessage, setServerErrorMessage] = React.useState('');
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const isSubmitButtonDisabled = !isNameValid || !isEmailValid || !isPasswordValid;
+  const [userData, setUserData] = React.useState({ name: '', email: '', password: '' });
+  const [serverErrorMessage, setServerErrorMessage] = React.useState('');
 
-  // универсальный обработчик ввода
+  // обработчик ввода
   function handleInputChange(e) {
     const { name, value } = e.target;
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
-  };
+
+    setUserData({
+      ...userData,
+      [name]: value
+    });
+
+    handleValidationWrapper(e);
+  }
 
   // универсальный обработчик валидации
-  function handleValidation(e) {
-    // кастомный компонент сообщений об ошибках
-    setValidationMessage(e.target);
-    const { name, validity, validationMessage } = e.target;
-    if (name === 'name') {
-      setIsNameValid(validity.valid);
-      setNameErrorMessage(validationMessage);
-    } else if (name === 'email') {
-      setIsEmailValid(validity.valid);
-      setEmailErrorMessage(validationMessage);
-    } else if (name === 'password') {
-      setIsPasswordValid(validity.valid);
-      setPasswordErrorMessage(validationMessage);
+  function handleValidationWrapper(e) {
+    handleValidation(e, {
+      setNameValid: setIsNameValid,
+      setEmailValid: setIsEmailValid,
+      setPasswordValid: setIsPasswordValid,
+    }, {
+      setNameErrorMessage,
+      setEmailErrorMessage,
+      setPasswordErrorMessage,
+    });
+  };
+
+  // регистрация пользователя
+  async function submitForm(e) {
+    e.preventDefault();
+    try {
+      await props.registerUser(userData);
+    } catch (err) {
+      // ловим ошибку регистрации из App
+      const errorMessage = handleRegistrationErrors(err);
+      setServerErrorMessage(errorMessage);
     }
   };
 
-  function submitForm(e) {
-    e.preventDefault();
-  }
   const formFields = [
     {
       type: 'text',
@@ -56,6 +59,7 @@ function Register(props) {
       label: 'Имя',
       minLength: 2,
       maxLength: 30,
+      pattern: usernamePattern,
       placeholder: 'Имя пользователя',
       isRequired: true,
     },
@@ -85,9 +89,9 @@ function Register(props) {
     <AuthTemplate
       title='Добро пожаловать!'
       formFields={formFields}
-      values={{ name, email, password }}
+      values={userData}
       handleInputChange={handleInputChange}
-      handleValidation={handleValidation}
+      handleValidation={handleValidationWrapper}
       errorMessages={errorMessages}
       serverErrorMessage={serverErrorMessage}
       isSubmitButtonDisabled={isSubmitButtonDisabled}
