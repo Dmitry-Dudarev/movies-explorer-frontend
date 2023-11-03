@@ -60,15 +60,19 @@ function SearchForm(props) {
     props.setIsSubmitted(true);
 
     try {
+      let filteredMovies = [];
       if (props.shouldFetchMovies && props.movies.length === 0) {
-        await props.getMovies();
+        const moviesFromApi = await props.getMovies();
+        filteredMovies = filterMovies(moviesFromApi, searchValue, checkboxValue);
+      } else {
+        filteredMovies = filterMovies(props.movies, searchValue, checkboxValue);
       }
-      const filteredMovies = filterMovies(props.movies, searchValue, checkboxValue);
       props.setMoviesAfterFiltration(filteredMovies);
-
+  
       localStorage.setItem(`${props.pageKey}-searchValue`, searchValue);
       localStorage.setItem(`${props.pageKey}-isShort`, isShort);
       localStorage.setItem(`${props.pageKey}-movies`, JSON.stringify(filteredMovies));
+      props.setSearchCounter(prevCounter => prevCounter + 1);
     } catch (error) {
       setErrorMessage("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз");
     } finally {

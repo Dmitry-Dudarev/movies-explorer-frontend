@@ -9,12 +9,13 @@ function Movies(props) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [moviesAfterFiltration, setMoviesAfterFiltration] = React.useState([]);
+  const [searchCounter, setSearchCounter] = React.useState(0);
 
   React.useEffect(() => {
     if (isSubmitted) {
       setShowCardList(true);
     }
-  }, [isSubmitted]);
+  }, [searchCounter, isSubmitted]);
 
   return (
     <section className='movies'>
@@ -24,6 +25,7 @@ function Movies(props) {
         getMovies={props.getMovies}
         setIsSubmitted={setIsSubmitted}
         setIsLoading={setIsLoading}
+        setSearchCounter={setSearchCounter}
         setErrorMessage={setErrorMessage}
         movies={props.movies}
         setMoviesAfterFiltration={setMoviesAfterFiltration}

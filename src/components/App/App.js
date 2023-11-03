@@ -139,7 +139,8 @@ function App() {
         thumbnail: BASE_PICTURE_URL + movie.image.formats.thumbnail.url,
         movieId: movie.id,
       }));
-      setMovies(formattedMovies)
+      setMovies(formattedMovies);
+      return formattedMovies;
     } catch (err) {
       console.error(`Ошибка при получении фильмов: ${err.errorData.message}`);
     };
