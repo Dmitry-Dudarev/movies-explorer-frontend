@@ -6,6 +6,7 @@ import Preloader from '../Preloader/Preloader';
 function MoviesCardList(props) {
   // переменная, содержащая значение ширины окна просмотра
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [displayedCardsCount, setDisplayedCardsCount] = React.useState(calculateInitialCardsCount(window.innerWidth));
   const isLoading = props.isLoading;
 
   // установка задержки
@@ -16,7 +17,19 @@ function MoviesCardList(props) {
       clearTimeout(timeout);
       timeout = setTimeout(() => func.apply(context, args), wait);
     };
-  }
+  };
+
+  // Функция для вычисления количества изначально 
+  // отрисовываемых карточек в зависимости от ширины окна просмотра
+  function calculateInitialCardsCount(windowWidth) {
+    if (windowWidth >= 1280) {
+      return 12;
+    } else if (windowWidth >= 768) {
+      return 8;
+    } else {
+      return 5;
+    };
+  };
 
   React.useEffect(() => {
     // обновление состояния windowWidth с новой шириной окна
@@ -34,20 +47,16 @@ function MoviesCardList(props) {
     };
   }, []);
 
-  // количество изначально отрисовываемых карточек в зависимости
-  // от ширины окна просмотра
-  let initialCardsCount;
-  if (windowWidth >= 1280) {
-    initialCardsCount = 12;
-  } else if (windowWidth >= 768) {
-    initialCardsCount = 8;
-  } else {
-    initialCardsCount = 5;
-  }
-  // вводим счетчик отображаемых карточек
-  const [displayedCardsCount, setDisplayedCardsCount] = React.useState(initialCardsCount);
-  // при нажатии на кнопку Ещё отобразится дополнительный пакет элементов
+  React.useEffect(() => {
+    setDisplayedCardsCount(calculateInitialCardsCount(windowWidth));
+  }, [windowWidth]);
 
+  React.useEffect(() => {
+    const newInitialCardsCount = calculateInitialCardsCount(window.innerWidth);
+    setDisplayedCardsCount(newInitialCardsCount);
+  }, [props.searchCounter]); 
+
+  // при нажатии на кнопку Ещё отобразится дополнительный пакет элементов
   const handleShowMoreCards = () => {
     let additionalCards;
 

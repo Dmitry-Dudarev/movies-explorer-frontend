@@ -37,6 +37,7 @@ function Movies(props) {
         addMovie={props.addMovie}
         savedMovies={props.savedMovies}
         deleteMovie={props.deleteMovie}
+        searchCounter={searchCounter}
       />}
     </section>
   );
