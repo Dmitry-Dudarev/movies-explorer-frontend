@@ -5,7 +5,8 @@ export const ErrorMessages = {
   loginDataErrorMessage: 'Вы ввели неправильный логин или пароль.',
   registerCreateUserErrorMessage: 'При регистрации пользователя произошла ошибка.',
   editProfileErrorMessage: 'При обновлении профиля произошла ошибка.',
+  editProfileEmailDuplicationErrorMessage: 'Пользователь с таким email уже зарегистрирован ранее.',
   generalErrorMessage: '500 На сервере произошла ошибка.',
   registerEmailDuplicationErrorMessage: 'Пользователь с таким email уже существует.',
   notFoundErrorMessage: '404 Страница по указанному маршруту не найдена.',
-}
+};

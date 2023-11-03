@@ -27,6 +27,8 @@ export function handleEditProfileErrors(error) {
     return ErrorMessages.editProfileErrorMessage;
   } else if (error.status === 404) {
     return ErrorMessages.editProfileErrorMessage;
+  } else if (error.status === 409) {
+    return ErrorMessages.editProfileEmailDuplicationErrorMessage;
   } else if (error.status === 500) {
     return ErrorMessages.generalErrorMessage;
   } else {
