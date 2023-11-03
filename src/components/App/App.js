@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
+import PublicRouteElement from '../PublicRouteElement/PublicRouteElement';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './App.css';
 import Header from '../Header/Header';
@@ -222,8 +223,22 @@ function App() {
                 />
               } />
 
-              <Route path='/signup' element={<Register registerUser={registerUser} />} />
-              <Route path='/signin' element={<Login loginUser={loginUser} />} />
+              <Route path='/signup' element={
+                <PublicRouteElement
+                  loggedIn={loggedIn}
+                  element={Register}
+                  registerUser={registerUser}
+                />
+              } />
+
+              <Route path='/signin' element={
+                <PublicRouteElement
+                  loggedIn={loggedIn}
+                  element={Login}
+                  loginUser={loginUser}
+                />
+              } />
+
               <Route path='*' element={<NotFound />} />
             </Routes>
           </main>
