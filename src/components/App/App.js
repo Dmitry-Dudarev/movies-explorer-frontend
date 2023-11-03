@@ -22,12 +22,15 @@ function App() {
 
   const getInitialUserData = () => {
     const storedUserData = localStorage.getItem('currentUser');
-    return storedUserData ? storedUserData : { name: '', about: '' };
+    if (storedUserData) {
+      return JSON.parse(storedUserData);
+    } else {
+      return { name: '', about: '' };
+    }
   };
 
   const [currentUser, setCurrentUser] = React.useState(getInitialUserData);
-  // const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(localStorage.getItem('loggedIn') === 'true');
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [isNavigationVisible, setNavigationVisible] = React.useState(false);
@@ -49,6 +52,7 @@ function App() {
       const response = await mainApi.getAllLikedMovies();
       // Если запрос успешно выполнен, значит пользователь авторизован
       setSavedMovies(response);
+      localStorage.setItem('loggedIn', 'true');
       setLoggedIn(true);
     } catch (error) {
       console.error(`Ошибка при получении сохраненных фильмов: ${error}`);
@@ -90,9 +94,10 @@ function App() {
       await mainApi.loginUser(loginUserData);
       const currentUserData = await mainApi.getCurrentUserData();
       localStorage.setItem('currentUser', JSON.stringify(currentUserData));
+      localStorage.setItem('loggedIn', 'true');
       setCurrentUser(currentUserData);
-      checkUserAuthAndGetLikedMovies();
       setLoggedIn(true);
+      await checkUserAuthAndGetLikedMovies();
       navigate('/movies', { replace: true });
     } catch (err) {
       console.error(`Ошибка при авторизации пользователя: ${err.errorData.message}`);
