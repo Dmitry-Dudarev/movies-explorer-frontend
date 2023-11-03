@@ -44,6 +44,9 @@ function SearchForm(props) {
   const handleChange = (e) => {
     setSearchValue(e.target.value);
     // сброс ошибки при вводе
+
+    console.log('helo')
+
     if (errorMessage) setErrorMessage("");
   };
 

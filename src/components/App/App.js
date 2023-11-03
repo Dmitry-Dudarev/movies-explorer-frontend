@@ -18,7 +18,14 @@ import * as moviesApi from '../../utils/MoviesApi';
 import { BASE_PICTURE_URL } from '../../utils/BasePictureURL';
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
+
+  const getInitialUserData = () => {
+    const storedUserData = localStorage.getItem('currentUser');
+    return storedUserData ? storedUserData : { name: '', about: '' };
+  };
+
+  const [currentUser, setCurrentUser] = React.useState(getInitialUserData);
+  // const [currentUser, setCurrentUser] = React.useState({ name: '', about: '' });
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
@@ -50,6 +57,14 @@ function App() {
   };
 
   React.useEffect(() => {
+    const storedUserData = localStorage.getItem('currentUser');
+    if (storedUserData) {
+      const currentUserData = storedUserData;
+      setCurrentUser(currentUserData);
+    }
+  }, []);
+
+  React.useEffect(() => {
     checkUserAuthAndGetLikedMovies();
   }, []);
 
@@ -73,6 +88,8 @@ function App() {
     try {
       await mainApi.loginUser(loginUserData);
       const currentUserData = await mainApi.getCurrentUserData();
+      console.log(currentUserData);
+      localStorage.setItem('currentUser', currentUserData);
       setCurrentUser(currentUserData);
       checkUserAuthAndGetLikedMovies();
       setLoggedIn(true);
@@ -98,8 +115,8 @@ function App() {
 
   async function editProfile(userData) {
     try {
-      await mainApi.setInformationAboutUser(userData);
-
+      const updatedUserData = await mainApi.setInformationAboutUser(userData);
+      localStorage.setItem('currentUser', updatedUserData);
     } catch (err) {
       console.error(`Ошибка при регистрации пользователя: ${err.errorData.message}`);
       throw err;
@@ -173,7 +190,7 @@ function App() {
             <Navigation isNavigationVisible={isNavigationVisible} changeNavigationVisibility={changeNavigationVisibility} />
             <Routes>
               <Route path='/' element={<Main />} />
-              
+
               <Route path='/movies' element={
                 <ProtectedRouteElement
                   loggedIn={loggedIn}
