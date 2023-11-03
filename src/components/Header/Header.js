@@ -43,7 +43,7 @@ function Header({ changeNavigationVisibility, ...props }) {
               ${location.pathname === '/movies' ? 'header__movies-link_current' : ''}`
             }
             to='/movies'>
-            Ффильмы
+            Фильмы
           </Link>
           <Link
             className={

@@ -59,7 +59,7 @@ function App() {
   React.useEffect(() => {
     const storedUserData = localStorage.getItem('currentUser');
     if (storedUserData) {
-      const currentUserData = storedUserData;
+      const currentUserData = JSON.parse(storedUserData);
       setCurrentUser(currentUserData);
     }
   }, []);
@@ -88,8 +88,7 @@ function App() {
     try {
       await mainApi.loginUser(loginUserData);
       const currentUserData = await mainApi.getCurrentUserData();
-      console.log(currentUserData);
-      localStorage.setItem('currentUser', currentUserData);
+      localStorage.setItem('currentUser', JSON.stringify(currentUserData));
       setCurrentUser(currentUserData);
       checkUserAuthAndGetLikedMovies();
       setLoggedIn(true);
@@ -116,7 +115,8 @@ function App() {
   async function editProfile(userData) {
     try {
       const updatedUserData = await mainApi.setInformationAboutUser(userData);
-      localStorage.setItem('currentUser', updatedUserData);
+      localStorage.setItem('currentUser', JSON.stringify(updatedUserData));
+      setCurrentUser(updatedUserData);
     } catch (err) {
       console.error(`Ошибка при регистрации пользователя: ${err.errorData.message}`);
       throw err;
