@@ -8,6 +8,7 @@ function SavedMovies(props) {
   const [isLoading, setIsLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [moviesAfterFiltration, setMoviesAfterFiltration] = React.useState([]);
+  const [searchCounter, setSearchCounter] = React.useState(0);
 
   React.useEffect(() => {
     setMoviesAfterFiltration(props.savedMovies);
@@ -24,6 +25,7 @@ function SavedMovies(props) {
         setErrorMessage={setErrorMessage}
         movies={props.savedMovies}
         setMoviesAfterFiltration={setMoviesAfterFiltration}
+        setSearchCounter={setSearchCounter}
       />
       <MoviesCardList
         isSavedMoviesPage={true}
@@ -32,6 +34,7 @@ function SavedMovies(props) {
         moviesAfterFiltration={moviesAfterFiltration || props.savedMovies}
         addMovie={props.addMovie}
         deleteMovie={props.deleteMovie}
+        searchCounter={searchCounter}
       />
     </section>
   );
