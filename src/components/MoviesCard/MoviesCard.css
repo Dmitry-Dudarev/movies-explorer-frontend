@@ -4,6 +4,7 @@
   border-radius: 6px;
   background-color: #222222;
   box-shadow: 0 4px 30px 0px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 .movie-card__image {
@@ -11,6 +12,19 @@
   height: 203px;
   object-fit: contain;
   display: block;
+}
+
+.movie-card__message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #222222;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .movie-card__bottom {
@@ -46,7 +60,7 @@
   visibility: visible;
 }
 
- .movie-card__delete-icon:hover {
+.movie-card__delete-icon:hover {
   cursor: pointer;
 }
 

@@ -1,0 +1,1 @@
+export const BASE_PICTURE_URL = 'https://api.nomoreparties.co';

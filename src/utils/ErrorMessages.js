@@ -4,8 +4,9 @@ export const ErrorMessages = {
   loginIncorrectTokenErrorMessage: 'При авторизации произошла ошибка. Переданный токен некорректен.',
   loginDataErrorMessage: 'Вы ввели неправильный логин или пароль.',
   registerCreateUserErrorMessage: 'При регистрации пользователя произошла ошибка.',
-  profileUpdateErrorMessage: 'При обновлении профиля произошла ошибка.',
+  editProfileErrorMessage: 'При обновлении профиля произошла ошибка.',
+  editProfileEmailDuplicationErrorMessage: 'Пользователь с таким email уже зарегистрирован ранее.',
   generalErrorMessage: '500 На сервере произошла ошибка.',
-  emailDuplicationErrorMessage: 'Пользователь с таким email уже существует.',
+  registerEmailDuplicationErrorMessage: 'Пользователь с таким email уже существует.',
   notFoundErrorMessage: '404 Страница по указанному маршруту не найдена.',
-}
+};
